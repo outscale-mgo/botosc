@@ -10,9 +10,9 @@ from botosc.connector import Connector
 @pytest.fixture(scope="module")
 def connection():
     yield Connector(
-        access_key=os.getenv("ACCESS_KEY"),
-        secret_key=os.getenv("SECRET_KEY"),
-        endpoint=os.getenv("OAPI_ENDPOINT", ""),
+        access_key=os.getenv("ACCESS_KEY", os.getenv("OSC_ACCESS_KEY")),
+        secret_key=os.getenv("SECRET_KEY", os.getenv("OSC_SECRET_KEY")),
+        endpoint=os.getenv("OAPI_ENDPOINT", "https://api.eu-west-2.outscale.com"),
         ssl_verify=True,
         authentication_method="accesskey",
     )
